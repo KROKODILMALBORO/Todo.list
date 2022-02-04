@@ -15,7 +15,6 @@ const CreatePlan = (props) => {
 
     if (e.key === 'Enter') {
       addNewPlan()
-      return
     }
   }
 

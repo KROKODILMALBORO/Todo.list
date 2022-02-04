@@ -13,22 +13,34 @@ const TodoList = () => {
   )
 
   useEffect(() => {
-    if (list.length === 0 ) {
+    if (!list.length) {
       return
     }
 
-    const uncompletedList = list.filter((plan) => plan.isComplete === false)
+    const uncompletedList = list.filter((plan) => !plan.isComplete)
 
-      if (uncompletedList.length === 0) {
-        setTimeout(() => (
-          alert('Все дела выполнены! Список будет очищен после перезагрузки страницы.') ||
-          localStorage.setItem(LS_LIST_NAME, JSON.stringify([])) &&
-          setList([])),
-          300
-        )
+    const listCleansing = () => {
+      localStorage.setItem(LS_LIST_NAME, JSON.stringify([]))
+      setList([])
+    }
 
-        return
+      if (!uncompletedList.length) {
+        setTimeout(() => (listCleansing()), 1000)
       }
+
+    //   if (uncompletedList.length > 0) {
+    //
+    //     return
+    //   }
+    //
+    // const requestClear = window.confirm('Желаете очистить список?')
+    //
+    //   if (requestClear) {
+    //       localStorage.setItem(LS_LIST_NAME, JSON.stringify([]))
+    //       setList([])
+    //
+    //     return
+    //   }
 
       localStorage.setItem(LS_LIST_NAME, JSON.stringify(list))
   }, [list])
@@ -67,30 +79,28 @@ const TodoList = () => {
   }
 
   return (
-    <div>
-      <div className='container-lg'>
-        <CreatePlan addNewPlan={addNewPlan} />
-        {list.length !== 0 ?
-          list.map((plan, index) =>
-              <Plan
-                key={plan.name}
-                plan={plan}
-                onComplete={() => onComplete(index)}
-              />
-          ) :
-            <div className='list-group'>
-              <div className='d-flex justify-content-center'>
-                <div className={classes.groupItem}>
-                  <div className='list-group-item list-group-item-action m-3'>
-                    <p className={`d-flex justify-content-center ${classes.p}`}>
-                      Cписок дел сейчас пуст
-                    </p>
-                  </div>
+    <div className='container-lg'>
+      <CreatePlan addNewPlan={addNewPlan} />
+      {list.length !== 0 ?
+        list.map((plan, index) =>
+            <Plan
+              key={plan.name}
+              plan={plan}
+              onComplete={() => onComplete(index)}
+            />
+        ) :
+          <div className='list-group'>
+            <div className='d-flex justify-content-center'>
+              <div className={classes.groupItem}>
+                <div className='list-group-item list-group-item-action m-3'>
+                  <p className={`d-flex justify-content-center ${classes.p}`}>
+                    Cписок дел сейчас пуст
+                  </p>
                 </div>
               </div>
             </div>
-        }
-      </div>
+          </div>
+      }
     </div>
   )
 }

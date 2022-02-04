@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Head from './components/Head'
+import Header from './components/Header'
 import TodoList from './components/TodoList'
 
 import classes from './App.module.css'
@@ -8,7 +8,7 @@ import classes from './App.module.css'
 function App() {
   return (
     <div className={`bg-dark text-dark bg-opacity-10 ${classes.app}`}>
-      <Head />
+      <Header />
       <TodoList />
     </div>
  )
