@@ -6,12 +6,12 @@ import TodoList from './components/TodoList'
 import classes from './App.module.css'
 
 function App() {
-  return (
-    <div className={`bg-dark text-dark bg-opacity-10 ${classes.app}`}>
-      <Header />
-      <TodoList />
-    </div>
- )
+    return (
+        <div className={`bg-dark bg-opacity-10 ${classes.app}`}>
+            <Header />
+            <TodoList />
+        </div>
+    )
 }
 
 export default App

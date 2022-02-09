@@ -8,101 +8,83 @@ import classes from './TodoList.module.css'
 import {LS_LIST_NAME} from './constans'
 
 const TodoList = () => {
-  const [list, setList] = useState(
-    JSON.parse(localStorage.getItem(LS_LIST_NAME)) || []
-  )
+    const [list, setList] = useState(
+        JSON.parse(localStorage.getItem(LS_LIST_NAME)) || []
+    )
 
-  useEffect(() => {
-    if (!list.length) {
-      return
-    }
+    useEffect(() => {
+        if (!list.length) {
+            return
+        }
 
-    const uncompletedList = list.filter((plan) => !plan.isComplete)
+        const uncompletedList = list.filter((plan) => !plan.isComplete)
 
-    const listCleansing = () => {
-      localStorage.setItem(LS_LIST_NAME, JSON.stringify([]))
-      setList([])
-    }
+        if (!uncompletedList.length) {
+            localStorage.setItem(LS_LIST_NAME, JSON.stringify([]))
+            setList([])
+        }
 
-      if (!uncompletedList.length) {
-        setTimeout(() => (listCleansing()), 1000)
-      }
+        localStorage.setItem(LS_LIST_NAME, JSON.stringify(list))
+    }, [list])
 
-    //   if (uncompletedList.length > 0) {
-    //
-    //     return
-    //   }
-    //
-    // const requestClear = window.confirm('Желаете очистить список?')
-    //
-    //   if (requestClear) {
-    //       localStorage.setItem(LS_LIST_NAME, JSON.stringify([]))
-    //       setList([])
-    //
-    //     return
-    //   }
+    const addNewPlan = (newPlan) => {
 
-      localStorage.setItem(LS_LIST_NAME, JSON.stringify(list))
-  }, [list])
+        if (!newPlan.name) {
+            alert('Чтобы добавить новое дело, его нужно записать!')
 
-  const addNewPlan = (newPlan) => {
+            return
+        }
 
-    if (!newPlan.name) {
-      alert('Чтобы добавить новые дела, нужно их сначала записать!')
+        const identicalList = list.find((plan) => plan.name === newPlan.name)
 
-      return
-    }
+        if (identicalList) {
+            alert('Такое дело уже есть!')
 
-    const identicalList = list.find((plan) => plan.name === newPlan.name)
+            return
+        }
 
-      if (identicalList) {
-        alert('Такое дело уже есть!')
+        const newList = [...list, newPlan]
 
-        return
-      }
+        setList(newList)
+        }
 
-    const newList = [...list, newPlan]
+        const onComplete = (index) => {
+            const plan = list[index]
+            const newPlan = {
+                ...plan,
+                isComplete: !plan.isComplete,
+            }
+            const newList = [...list]
 
-    setList(newList)
-  }
+            newList[index] = newPlan
+            setList(newList)
+        }
 
-  const onComplete = (index) => {
-    const plan = list[index]
-    const newPlan = {
-      ...plan,
-      isComplete: !plan.isComplete,
-    }
-    const newList = [...list]
-
-    newList[index] = newPlan
-    setList(newList)
-  }
-
-  return (
-    <div className='container-lg'>
-      <CreatePlan addNewPlan={addNewPlan} />
-      {list.length !== 0 ?
-        list.map((plan, index) =>
-            <Plan
-              key={plan.name}
-              plan={plan}
-              onComplete={() => onComplete(index)}
-            />
-        ) :
-          <div className='list-group'>
-            <div className='d-flex justify-content-center'>
-              <div className={classes.groupItem}>
-                <div className='list-group-item list-group-item-action m-3'>
-                  <p className={`d-flex justify-content-center ${classes.p}`}>
-                    Cписок дел сейчас пуст
-                  </p>
+    return (
+        <div className='container-lg'>
+            <CreatePlan addNewPlan={addNewPlan} />
+            {list.length !== 0 ?
+                list.map((plan, index) =>
+                    <Plan
+                        key={plan.name}
+                        plan={plan}
+                        onComplete={() => onComplete(index)}
+                    />
+                ) :
+                <div className='list-group'>
+                    <div className='d-flex justify-content-center'>
+                        <div className={classes.groupItem}>
+                            <div className='list-group-item list-group-item-action m-3'>
+                                <p className={`d-flex justify-content-center ${classes.p}`}>
+                                    Cписок дел сейчас пуст
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-      }
-    </div>
-  )
+            }
+        </div>
+    )
 }
 
 export default TodoList
