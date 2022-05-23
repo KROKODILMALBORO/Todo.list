@@ -2,12 +2,13 @@ import React from 'react'
 
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
-import combineReducer from './instances/redux'
 
 import Header from './components/Header'
 import TodoList from './components/TodoList'
 
-const store = createStore(combineReducer)
+import combineReducers from './instances/redux'
+
+const store = createStore(combineReducers)
 
 const App = () => {
     return (

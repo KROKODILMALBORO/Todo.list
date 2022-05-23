@@ -25,10 +25,32 @@ export function useListPlansWithReducer() {
         })
     }
 
-    const postListPlan = (plan) => {
+    const postListPlan = (newPlan) => {
+        if (!newPlan.name) {
+            alert('Чтобы добавить новое дело, его нужно записать!')
+
+            return
+        }
+
+        if (newPlan.name.length > 40) {
+            alert('Слишком длинно для одного дела!')
+
+            return
+        }
+
+        const identicalList = listPlans.find((plan) =>
+            plan.name === newPlan.name
+        )
+
+        if (identicalList) {
+            alert('Такое дело уже есть!')
+
+            return
+        }
+
         dispatch({
             type: POST_LIST_PLAN,
-            plan: plan,
+            plan: newPlan,
         })
     }
 

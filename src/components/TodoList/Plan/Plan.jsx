@@ -1,8 +1,5 @@
 import React from 'react'
 
-import checkImgFailed from './media/checkFailed.svg'
-import checkImgDone from './media/checkDone.svg'
-
 const Plan = (props) => {
     return (
         <div className='d-flex flex-row justify-content-center mb-3'>
@@ -10,16 +7,17 @@ const Plan = (props) => {
                 <span className='fs-4'>
                     {props.plan.name}
                 </span>
-                <div onClick={props.onComplete}>
+                <div onClick={props.pathListPlan}>
                     {
-                        props.plan.isComplete ?
-                        <img
-                            src={checkImgDone}
-                            alt={'...'}
+                        props.plan.isCompleted ?
+                        <input
+                            className='form-check-input p-3 mb-1'
+                            type='checkbox'
+                            checked
                         /> :
-                        <img
-                            src={checkImgFailed}
-                            alt={'...'}
+                        <input
+                            className='form-check-input p-3 mb-1'
+                            type='checkbox'
                         />
                     }
                 </div>
