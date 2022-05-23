@@ -1,13 +1,13 @@
 import React from 'react'
 
-import classes from './Header.module.css'
-
 const Header = () => {
-    return (
-        <div className={`d-flex flex-row justify-content-center bg-primary text-white bg-opacity-50 ${classes.header}`}>
-            <h1 className={`d-flex flex-row justify-content-center fw-bold ${classes.h1}`}>
-                TODO
-            </h1>
+    return(
+        <div className='bg-primary bg-opacity-75 shadow-sm'>
+            <div className='d-flex flex-row justify-content-center p-4'>
+                <span className='display-1 fw-bold text-light text-opacity-75'>
+                    TODO
+                </span>
+            </div>
         </div>
     )
 }

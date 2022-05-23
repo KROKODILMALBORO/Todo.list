@@ -19,9 +19,9 @@ const CreatePlan = (props) => {
     }
 
     return (
-        <div className='d-flex justify-content-center m-2'>
+        <div className='d-flex flex-row justify-content-center p-4'>
             <input
-                className='form-control w-50 m-2 fs-5'
+                className='form-control fs-4 w-50 shadow-sm px-3 mx-2'
                 type='text'
                 value={name}
                 placeholder='Название нового дела'
@@ -29,7 +29,7 @@ const CreatePlan = (props) => {
                 onKeyPress={handleKeyPress}
             />
             <button
-                className='btn btn-primary m-2'
+                className='btn btn-lg btn-primary shadow-sm'
                 onClick={addNewPlan}
             >
                 Добавить

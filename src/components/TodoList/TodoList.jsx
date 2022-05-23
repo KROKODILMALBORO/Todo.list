@@ -3,8 +3,6 @@ import React, {useState, useEffect} from 'react'
 import CreatePlan from './CreatePlan'
 import Plan from './Plan'
 
-import classes from './TodoList.module.css'
-
 import {LS_LIST_NAME} from './constans'
 
 const TodoList = () => {
@@ -35,7 +33,9 @@ const TodoList = () => {
             return
         }
 
-        const identicalList = list.find((plan) => plan.name === newPlan.name)
+        const identicalList = list.find((plan) =>
+            plan.name === newPlan.name
+        )
 
         if (identicalList) {
             alert('Такое дело уже есть!')
@@ -61,7 +61,7 @@ const TodoList = () => {
         }
 
     return (
-        <div className='container-lg'>
+        <div className='container'>
             <CreatePlan addNewPlan={addNewPlan} />
             {list.length !== 0 ?
                 list.map((plan, index) =>
@@ -71,15 +71,11 @@ const TodoList = () => {
                         onComplete={() => onComplete(index)}
                     />
                 ) :
-                <div className='list-group'>
-                    <div className='d-flex justify-content-center'>
-                        <div className={classes.groupItem}>
-                            <div className='list-group-item list-group-item-action m-3'>
-                                <p className={`d-flex justify-content-center ${classes.p}`}>
-                                    Cписок дел сейчас пуст
-                                </p>
-                            </div>
-                        </div>
+                <div className='d-flex justify-content-center'>
+                    <div className='bg-light rounded shadow-sm p-1 px-3'>
+                        <span className='fs-4 text-secondary'>
+                            Cписок дел сейчас пуст
+                        </span>
                     </div>
                 </div>
             }

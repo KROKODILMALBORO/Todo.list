@@ -3,11 +3,9 @@ import React from 'react'
 import Header from './components/Header'
 import TodoList from './components/TodoList'
 
-import classes from './App.module.css'
-
-function App() {
+const App = () => {
     return (
-        <div className={`bg-dark bg-opacity-10 ${classes.app}`}>
+        <div className='min-vh-100 bg-secondary bg-opacity-25 text-dark'>
             <Header />
             <TodoList />
         </div>
