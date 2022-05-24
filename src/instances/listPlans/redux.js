@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
 
-import listPlans from './types/reducer'
+import listPlans from './reducer'
 
 export default combineReducers({
     listPlans,

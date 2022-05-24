@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 
-import {useListPlansWithReducer} from '../../instances/types/hooks.js'
+import {useListPlansWithReducer} from '../../instances/listPlans/hooks.js'
 
 import CreatePlan from './CreatePlan'
 import Plan from './Plan'
@@ -19,7 +19,7 @@ const TodoList = () => {
 
      return (
         <div className='container'>
-            <CreatePlan 
+            <CreatePlan
                 postListPlan={postListPlan}
                 listPlans={listPlans}
             />

@@ -6,7 +6,7 @@ import {createStore} from 'redux'
 import Header from './components/Header'
 import TodoList from './components/TodoList'
 
-import combineReducers from './instances/redux'
+import combineReducers from './instances/listPlans/redux'
 
 const store = createStore(combineReducers)
 
