@@ -19,7 +19,10 @@ const TodoList = () => {
 
      return (
         <div className='container'>
-            <CreatePlan postListPlan={postListPlan}/>
+            <CreatePlan 
+                postListPlan={postListPlan}
+                listPlans={listPlans}
+            />
             {
                 listPlans.length !== 0 ?
                 listPlans.map((plan, index) =>

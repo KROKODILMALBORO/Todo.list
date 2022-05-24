@@ -4,6 +4,28 @@ const CreatePlan = (props) => {
     const [name, setName] = useState('')
 
     const postListPlan = () => {
+        if (!name) {
+            alert('Чтобы добавить новое дело, его нужно записать!')
+
+            return
+        }
+
+        if (name.length > 40) {
+            alert('Слишком длинно для одного дела!')
+
+            return
+        }
+
+        const identicalList = props.listPlans.find((plan) =>
+            plan.name === name
+        )
+
+        if (identicalList) {
+            alert('Такое дело уже есть!')
+
+            return
+        }
+
         props.postListPlan({
             name: name,
             isCompleted: false,

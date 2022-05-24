@@ -26,28 +26,6 @@ export function useListPlansWithReducer() {
     }
 
     const postListPlan = (newPlan) => {
-        if (!newPlan.name) {
-            alert('Чтобы добавить новое дело, его нужно записать!')
-
-            return
-        }
-
-        if (newPlan.name.length > 40) {
-            alert('Слишком длинно для одного дела!')
-
-            return
-        }
-
-        const identicalList = listPlans.find((plan) =>
-            plan.name === newPlan.name
-        )
-
-        if (identicalList) {
-            alert('Такое дело уже есть!')
-
-            return
-        }
-
         dispatch({
             type: POST_LIST_PLAN,
             plan: newPlan,
@@ -63,11 +41,9 @@ export function useListPlansWithReducer() {
 
     const clearListPlans = () => {
         localStorage.setItem('listPlans', JSON.stringify([]))
-        const listPlans = JSON.parse(localStorage.getItem('listPlans')) || []
 
         dispatch({
             type: CLEAR_LIST_PLANS,
-            listPlans: listPlans,
         })
     }
 
