@@ -1,6 +1,6 @@
 # What is it?
 #### A typical TodoList with the following features:
- * Added entries are stored in localStorage
+ * Added tasks are stored in localStorage
  * The to-do list is automatically cleared when all the tasks in it are completed
  * All functionality is written in redux
 
