@@ -66,6 +66,5 @@ export function useListPlansWithReducer() {
         getListPlans,
         postListPlan,
         patchListPlan,
-        clearListPlans,
     }
 }
