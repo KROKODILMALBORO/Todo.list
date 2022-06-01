@@ -16,11 +16,11 @@ const CreatePlan = (props) => {
             return
         }
 
-        const identicalList = props.listPlans.find((plan) =>
+        const identicalPlan = props.listPlans.find((plan) =>
             plan.name === name
         )
 
-        if (identicalList) {
+        if (identicalPlan) {
             alert('Такое дело уже есть!')
 
             return
@@ -39,6 +39,7 @@ const CreatePlan = (props) => {
             postListPlan()
         }
     }
+
 
     return (
         <div className='d-flex flex-row justify-content-center p-4'>

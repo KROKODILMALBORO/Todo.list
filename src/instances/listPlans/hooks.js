@@ -10,6 +10,7 @@ import {
     POST_LIST_PLAN,
     PATCH_LIST_PLAN,
     CLEAR_LIST_PLANS,
+    LS_LIST_PLANS,
 } from './constans'
 
 export function useListPlansWithReducer() {
@@ -17,7 +18,7 @@ export function useListPlansWithReducer() {
     const dispatch = useDispatch()
 
     const getListPlans = () => {
-        const listPlans = JSON.parse(localStorage.getItem('listPlans')) || []
+        const listPlans = JSON.parse(localStorage.getItem(LS_LIST_PLANS)) || []
 
         dispatch({
             type: GET_LIST_PLANS,
@@ -40,7 +41,7 @@ export function useListPlansWithReducer() {
     }
 
     const clearListPlans = () => {
-        localStorage.setItem('listPlans', JSON.stringify([]))
+        localStorage.setItem(LS_LIST_PLANS, JSON.stringify([]))
 
         dispatch({
             type: CLEAR_LIST_PLANS,
@@ -58,7 +59,7 @@ export function useListPlansWithReducer() {
             clearListPlans()
         }
 
-        localStorage.setItem('listPlans', JSON.stringify(listPlans))
+        localStorage.setItem(LS_LIST_PLANS, JSON.stringify(listPlans))
     }, [listPlans])
 
     return {

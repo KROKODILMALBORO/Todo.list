@@ -14,7 +14,7 @@ const Plan = (props) => {
                 <input
                     className='form-check-input p-3 mb-1'
                     type='checkbox'
-                    checked={props.plan.isCompleted}
+                    defaultChecked={props.plan.isCompleted}
                     onChange={props.pathListPlan}
                     onClick={props.pathListPlan}
                 />
